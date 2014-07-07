@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="psh.testapp.pshfont"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="18"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="폰트보기" >
+        <activity
+            android:name="psh.testapp.pshfont.IntroActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="psh.testapp.pshfont.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/CustomActionBarTheme3" >
+        </activity>
+        <activity
+            android:name="psh.testapp.pshfont.SubActivityN"
+            android:theme="@style/CustomActionBarTheme2" >
+        </activity>
+        <activity
+            android:name="psh.testapp.pshfont.SubActivityNL"
+            android:theme="@style/CustomActionBarTheme2" >
+        </activity>
+        <activity
+            android:name="psh.testapp.pshfont.SubActivityNB"
+            android:theme="@style/CustomActionBarTheme2" >
+        </activity>
+        <activity android:name="psh.testapp.pshfont.SubActivityNEB" >
+        </activity>
+        <activity android:name="psh.testapp.pshfont.SubActivityR" >
+        </activity>
+    </application>
+
+</manifest>

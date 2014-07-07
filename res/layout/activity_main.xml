@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainacrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="?android:attr/actionBarSize"
+    android:background="@drawable/bg"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp"        
+    android:background="#35475d"    
+    android:weightSum="1" 
+         >
+
+        <LinearLayout
+            android:id="@+id/box1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="10dp" >
+
+            <TextView
+                android:id="@+id/Txt0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/txt0_title" />
+
+            <EditText
+                android:id="@+id/inputTxt1"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/iptbox"
+                android:ems="10"
+                android:hint="@string/ipnt1"
+                android:padding="5dp" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/box2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="10dp" >
+
+            <TextView
+                android:id="@+id/Txt1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/txt1_title" />
+
+            <LinearLayout
+                android:id="@+id/topbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1" >
+
+                <Spinner
+                    android:id="@+id/fontSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="0.7"
+                    android:background="@drawable/selbox2"
+                    android:drawSelectorOnTop="true"
+                    android:prompt="@string/font_list" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.3"
+                    android:paddingLeft="5dp" >
+
+                    <Spinner
+                        android:id="@+id/sizeSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/selbox2"
+                        android:drawSelectorOnTop="true"
+                        android:prompt="@string/font_list"
+                        android:textAlignment="center" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/btn_style2"
+                android:height="48dp"
+                android:text="@string/btntxt1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:scrollbarStyle="outsideOverlay" >
+
+            <TextView
+                android:id="@+id/Txt2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/txt2_title" />
+
+            <LinearLayout
+                android:id="@+id/topbox2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:weightSum="1" >
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="0.5"
+                    android:paddingRight="2.5dp" >
+
+                    <Spinner
+                        android:id="@+id/sizeFristSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/selbox2"
+                        android:drawSelectorOnTop="true"
+                        android:prompt="@string/font_list" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.5"
+                    android:paddingLeft="2.5dp" >
+
+                    <Spinner
+                        android:id="@+id/sizeSecondSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@drawable/selbox2"
+                        android:drawSelectorOnTop="true"
+                        android:prompt="@string/font_list" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn2"
+                style="@style/buttonty1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_style2"
+                android:text="@string/btntxt2" />
+
+            <Button
+                android:id="@+id/btn3"
+                style="@style/buttonty1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_style2"
+                android:text="@string/btntxt3" />
+
+            <Button
+                android:id="@+id/btn4"
+                style="@style/buttonty1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_style2"
+                android:text="@string/btntxt4" />
+
+            <Button
+                android:id="@+id/btn5"
+                style="@style/buttonty1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_style2"
+                android:text="@string/btntxt5" />
+
+            <Button
+                android:id="@+id/btn11"
+                style="@style/buttonty1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_style2"
+                android:text="@string/btntxt11" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

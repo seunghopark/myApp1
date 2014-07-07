@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+tools:ignore="TypographyDashes">
+  <!--Replace placeholder ID with your tracking ID-->
+  <string name="ga_trackingId">UA-52308946-1</string>
+
+  <!--Enable automatic activity tracking-->
+  <bool name="ga_autoActivityTracking">true</bool>
+
+  <!--Enable automatic exception tracking-->
+  <bool name="ga_reportUncaughtExceptions">true</bool>
+  
+
+	<string name="com.example.pshfont.MyFontActivity">Home</string>
+	<string name="com.example.pshfont.SubActivityN">Preferences</string>
+
+</resources>

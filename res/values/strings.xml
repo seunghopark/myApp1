@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="intro_txt">디자인을 위한 폰트 확인 어플</string>
+    <string name="app_name">pshFont</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="ipnt1">확인하고 싶은 글을 입력해주세요</string>
+    <string name="ipnt2">사이즈sp</string>
+    <string name="btntxt1">보기</string>
+    <string name="btntxt2">NaumGothic</string>
+    <string name="btntxt3">NaumGothicLight</string>
+    <string name="btntxt4">NaumGothicBold</string>
+    <string name="btntxt5">NaumGothicExtraBold</string>
+    <string name="btntxt11">Roboto-Thin</string>
+    <string name="title_activity_sub_activity_n">SubActivityN</string>
+    <string name="font_list">폰트목록</string>
+    <string name="txt0_title">내용 입력</string>
+    <string name="txt1_title">선택 보기</string>
+    <string name="txt2_title">크기 오름차순으로 보기</string>
+    <string name="title_activity_intro">IntroActivity</string>
+
+</resources>

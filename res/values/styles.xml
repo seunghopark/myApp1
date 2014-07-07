@@ -1,0 +1,34 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- action bar title text -->
+    <style name="TitleTextStyle">
+        <item name="android:textColor">@color/actionbar_text2</item>
+    </style>
+    
+    <style name="buttonty1">        
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:height">48dp</item>
+    </style>
+	
+	<color name="ipt_de1">#64cdef</color>
+    
+	<color name="btn_de1">#fcbb3e</color>	
+	<color name="btn_fc1">#45c8a6</color>
+	
+	<color name="btn_de2">#e9755d</color>	
+	<color name="btn_fc2">#45c8a6</color>
+	
+	<color name="btn_de3">#23a3cd</color>	
+	<color name="btn_fc3">#45c8a6</color>
+	
+    <color name="actionbar_text">#ff00ff</color>
+    <color name="actionbar_text2">#0000ff</color>
+    <color name="custom_theme_color">#b0b0ff</color>
+    <color name="bgtype1">#265737</color>
+    <color name="acbg">#0d3722</color>
+    
+    <!-- ActionBar title text -->
+    <style name="MyActionBarTitleText">
+        <item name="android:textColor">@color/actionbar_text2</item>
+    </style>
+    
+</resources>
