@@ -6,15 +6,16 @@ import java.util.List;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,8 +28,7 @@ import com.google.analytics.tracking.android.Fields;
 import com.google.analytics.tracking.android.MapBuilder;
 import com.google.analytics.tracking.android.Tracker;
 
-public class MainActivity extends Activity implements
-		AdapterView.OnItemSelectedListener {
+public class MainActivity extends Activity {
 
 	public static final int REQUEST_CODE_ANOTHER = 1001;
 
@@ -42,6 +42,10 @@ public class MainActivity extends Activity implements
 
 	Resources myr;
 
+	Spinner spinner1;
+
+	Spinner spinner2;
+
 	// 텍스트뷰 객체 참조
 	TextView text1;
 
@@ -50,7 +54,7 @@ public class MainActivity extends Activity implements
 	String[] filelist;
 
 	String[] linesArr;
-	
+
 	List<Integer> sizeVal = new ArrayList<Integer>();
 
 	ActionBar shbar;
@@ -59,6 +63,9 @@ public class MainActivity extends Activity implements
 
 	EasyTracker easyTracker = EasyTracker.getInstance(this);
 
+	String selItem;
+	Integer selItemSize;
+
 	private static final String TYPEFACE_NAME = "fonts/NanumGothicBold.ttf";
 
 	private Typeface typeface = null;
@@ -66,27 +73,6 @@ public class MainActivity extends Activity implements
 	private void loadTypeface() {
 		if (typeface == null)
 			typeface = Typeface.createFromAsset(getAssets(), TYPEFACE_NAME);
-	}
-
-	@Override
-	public void onStart() {
-		super.onStart();
-		EasyTracker.getInstance(this).activityStart(this); // Add this method.
-		// May return null if EasyTracker has not yet been initialized with a
-		// property
-		// ID.
-		Tracker easyTracker = EasyTracker.getInstance(this);
-
-		// This screen name value will remain set on the tracker and sent with
-		// hits until it is set to a new value or to null.
-		easyTracker.set(Fields.SCREEN_NAME, "메인페이지");
-		easyTracker.send(MapBuilder.createAppView().build());
-	}
-
-	@Override
-	public void onStop() {
-		super.onStop();
-		EasyTracker.getInstance(this).activityStop(this); // Add this method.
 	}
 
 	@Override
@@ -102,6 +88,7 @@ public class MainActivity extends Activity implements
 				R.layout.main_sctionbar, null);
 
 		ActionBar barbar = getActionBar();
+
 		barbar.setCustomView(myButtonLayout);
 		barbar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 
@@ -169,11 +156,15 @@ public class MainActivity extends Activity implements
 
 		} catch (IOException e) {
 			e.printStackTrace();
-		}		
+		}
 
 		// 콤보박스 설정
 
-		Spinner spinner1 = (Spinner) findViewById(R.id.fontSpinner);
+		// 입력한내용의 폰트설정
+
+		spinner1 = (Spinner) findViewById(R.id.fontSpinner);
+
+		spinner1.setPrompt("폰트를 선택하세요");
 
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, linesArr);
@@ -183,19 +174,29 @@ public class MainActivity extends Activity implements
 
 		spinner1.setAdapter(dataAdapter);
 
-		System.out.println("돌고");
-		
+		spinner1.setOnItemSelectedListener(new OnItemSelectedListener() {
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+
+				selItem = (String) spinner1.getSelectedItem();
+
+				Toast.makeText(getBaseContext(), selItem + "을 선택 했습니다.",
+						Toast.LENGTH_LONG).show();
+			}
+
+			public void onNothingSelected(AdapterView<?> parent) {
+			}
+		});
+
 		// 스나이퍼 폰트 사이즈
 
 		for (int j = 0; j < 150; j++) {
-			//sizeVal[j] = j + 1;
-			sizeVal.add(j+1);
-			
+			// sizeVal[j] = j + 1;
+			sizeVal.add(j + 1);
+
 		}
-		
-		
-		
-		Spinner spinner2 = (Spinner) findViewById(R.id.sizeSpinner);
+
+		spinner2 = (Spinner) findViewById(R.id.sizeSpinner);
 
 		ArrayAdapter<Integer> dataAdapterSize = new ArrayAdapter<Integer>(this,
 				android.R.layout.simple_spinner_item, sizeVal);
@@ -205,13 +206,27 @@ public class MainActivity extends Activity implements
 
 		spinner2.setAdapter(dataAdapterSize);
 
+		spinner2.setOnItemSelectedListener(new OnItemSelectedListener() {
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+
+				selItemSize = (Integer) spinner2.getSelectedItem();
+
+				Toast.makeText(getBaseContext(), selItemSize + "을 선택 했습니다.",
+						Toast.LENGTH_LONG).show();
+			}
+
+			public void onNothingSelected(AdapterView<?> parent) {
+			}
+		});
+
 		// 폰트명
 
 		edittxtContent = (EditText) findViewById(R.id.inputTxt1);
 
 		// edittxtSize = (EditText) findViewById(R.id.inputTxt2);
 
-		edittxtBtn = (Button) findViewById(R.id.btn1);
+		edittxtBtn = (Button) findViewById(R.id.btn1); // 보기버튼
 
 		edittxtBtn.setOnClickListener(new ClickHandler());
 
@@ -305,7 +320,7 @@ public class MainActivity extends Activity implements
 
 		});
 
-		Button fontTypeR = (Button) findViewById(R.id.btn11);
+		Button fontTypeR = (Button) findViewById(R.id.btn11); // 보기버튼
 
 		fontTypeR.setOnClickListener(new OnClickListener() {
 
@@ -314,6 +329,7 @@ public class MainActivity extends Activity implements
 				// TODO 자동 생성된 메소드 스텁
 				Intent intent = new Intent(getApplicationContext(),
 						SubActivityR.class);
+
 				easyTracker.send(MapBuilder.createEvent("메인-로보트", // Event
 																	// category
 																	// (required)
@@ -329,46 +345,40 @@ public class MainActivity extends Activity implements
 
 	}
 
-	/**
-	 * 아이템이 선택되었을 때 처리
-	 */
-	public void onItemSelected(AdapterView<?> parent, View v, int position,
-			long id) {
-		System.out.println("오나");
-		text1.setText(linesArr[position]);
-
-	}
-
-	/**
-	 * 아무것도 선택되지 않았을 때 처리
-	 */
-	public void onNothingSelected(AdapterView<?> parent) {
-		text1.setText("아무것도 선택되지 않았을 때 처리");
-	}
-
 	private class ClickHandler implements OnClickListener {
-
 		@Override
 		public void onClick(View v) {
 			// TODO 자동 생성된 메소드 스텁
 			try {
-				String myFontContent = edittxtContent.getText().toString();
-				// String myFontSize = edittxtSize.getText().toString();
-				Intent myfontActivity = new Intent(getApplicationContext(),
-						MyFontActivity.class);
-				myfontActivity.putExtra("fontContent", myFontContent);
+				String myFontContent = edittxtContent.getText().toString();// 입력한내용
 
-				Toast.makeText(getBaseContext(), myFontContent,
-						Toast.LENGTH_LONG).show();
+				Intent myFontActivity = new Intent(getApplicationContext(),
+						CsFontActivity.class);
+				
+				myFontActivity.putExtra("fontContent", myFontContent); // 내용
+				myFontActivity.putExtra("fontName", selItem); // 폰트명
+				myFontActivity.putExtra("fontSize", selItemSize); // 폰트사이즈
+
+				// 액티비티를 띄워주도록 startActivityForResult() 메소드를 호출합니다.
+				startActivity(myFontActivity);
+
+				/*Toast.makeText(
+						getBaseContext(),
+						myFontContent + "내용으로" + selItem + "선택했고" + selItemSize
+								+ "사이즈로 선택했다고 어렵구나", Toast.LENGTH_LONG).show();*/
+				
+/*				 팝업으로 띄우기 부분*/
+				
+				
+				
 
 			} catch (Exception ex) {
-				easyTracker.send(MapBuilder.createEvent("메인-직접", // Event
-																	// category
-																	// (required)
+				easyTracker.send(MapBuilder.createEvent("메인-직접",
 						"button_press", // Event action (required)
 						"play_button", // Event label
 						null) // Event value
 						.build());
+
 				Toast.makeText(getBaseContext(), ex.getMessage(),
 						Toast.LENGTH_LONG).show();
 			}
@@ -379,23 +389,45 @@ public class MainActivity extends Activity implements
 	/**
 	 * 새로운 액티비티에서 돌아올 때 자동 호출되는 메소드
 	 */
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
+	// protected void onActivityResult(int requestCode, int resultCode, Intent
+	// data) {
+	// super.onActivityResult(requestCode, resultCode, data);
+	//
+	// if (requestCode == REQUEST_CODE_ANOTHER) {
+	// Toast toast = Toast.makeText(getBaseContext(),
+	// "onActivityResult() 메소드가 호출됨. 요청코드 : " + requestCode
+	// + ", 결과코드 : " + resultCode, Toast.LENGTH_LONG);
+	// toast.show();
+	// }
+	//
+	// }
+	//
+	// @Override
+	// public boolean onCreateOptionsMenu(Menu menu) {
+	// // Inflate the menu; this adds items to the action bar if it is present.
+	// getMenuInflater().inflate(R.menu.main, menu);
+	// return true;
+	// }
 
-		if (requestCode == REQUEST_CODE_ANOTHER) {
-			Toast toast = Toast.makeText(getBaseContext(),
-					"onActivityResult() 메소드가 호출됨. 요청코드 : " + requestCode
-							+ ", 결과코드 : " + resultCode, Toast.LENGTH_LONG);
-			toast.show();
-		}
+	@Override
+	public void onStart() {
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this); // Add this method.
+		// May return null if EasyTracker has not yet been initialized with a
+		// property
+		// ID.
+		Tracker easyTracker = EasyTracker.getInstance(this);
 
+		// This screen name value will remain set on the tracker and sent with
+		// hits until it is set to a new value or to null.
+		easyTracker.set(Fields.SCREEN_NAME, "메인페이지");
+		easyTracker.send(MapBuilder.createAppView().build());
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+	public void onStop() {
+		super.onStop();
+		EasyTracker.getInstance(this).activityStop(this); // Add this method.
 	}
 
 }

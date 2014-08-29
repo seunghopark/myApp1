@@ -83,6 +83,7 @@ public class SubActivityN extends Activity implements View.OnClickListener{
 		View myButtonLayout = getLayoutInflater().inflate(R.layout.psh_sctionbar, null);
 		
 		myButtonLayout.findViewById(R.id.backbutton1).setOnClickListener(this);		
+		
 		TextView test = (TextView) myButtonLayout.findViewById(R.id.titleView1);
 		test.setText("³ª´®°íµñ");
 		test.setTypeface(typeface2);

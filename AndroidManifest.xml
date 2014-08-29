@@ -47,6 +47,8 @@
         </activity>
         <activity android:name="psh.testapp.pshfont.SubActivityR" >
         </activity>
+        <activity android:name="psh.testapp.pshfont.CsFontActivity" >
+        </activity>
     </application>
 
 </manifest>
